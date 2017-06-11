@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>The Interval Service</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	</head>
+		
+	<body>
+		<h1>AngularJS Tutorial #10: Services</h1>		
+
+		<div ng-app="myApp" ng-controller="myCtrl">
+			<h3>The url of this page is:</h3>
+			<h3>{{myUrl}}</h3>
+
+			<h3>The response from this page is:</h3>
+			<h3>{{myResponse}}</h3>
+
+			<h3>Time of your login: {{theTime}}</h3>
+			<h3>The time now: {{theTime2}}</h3>
+		</div>
+
+		<script>
+			var app = angular.module('myApp', []);
+			
+			app.controller('myCtrl', function($scope, $location, $timeout, $interval) {
+  			//  $scope.myUrl = $location.absUrl();
+			    $scope.myUrl = "http://ideabakr.org/"
+
+			/*  $http.get("http://ideabakr.org/").then(function (response) {
+        		    	$scope.myResponse = response.data;
+    			    });
+			*/
+			    $scope.myResponse = "Hello from http://ideabakr.org/";
+				
+			    $timeout(function() {
+        			alert("Please sign in to ideabakr.org");
+    			    }, 3000);	
+
+
+			    $scope.theTime = new Date().toLocaleTimeString();
+    			
+			    $interval(function () {
+        		    	$scope.theTime2 = new Date().toLocaleTimeString();
+    			    }, 1000);
+							
+			});
+		</script>	
+
+	</body>
+</html>
